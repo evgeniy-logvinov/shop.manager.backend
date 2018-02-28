@@ -50,7 +50,7 @@ keystone.set('routes', requireRoot('lib/routes'))
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
 	'Security': ['security-users', 'security-roles', 'security-permissions', 'security-permission-types'],
-	'Shop': ['baskets', 'products']
+	'Shop': ['baskets', 'products', 'product-in-baskets']
 })
 
 // Start Keystone to connect to your database and initialise the web server

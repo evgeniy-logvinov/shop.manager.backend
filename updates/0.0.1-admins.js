@@ -93,37 +93,43 @@ function createAdminPermissions() {
 				Promise.all([
 					SecurityPermission.findOne({
 						name: 'manage SecurityPermission'
-					}).exec(function (err, doc) {
+					}, function (err, doc) {
+						console.log('SecurityPermission', doc)
 						doc.role.push(role._id)
 						doc.save()
 					}),
 					SecurityPermission.findOne({
 						name: 'manage SecurityRole'
-					}).exec(function (err, doc) {
+					}, function (err, doc) {
+						console.log('SecurityRole', doc)
 						doc.role.push(role._id)
 						doc.save()
 					}),
 					SecurityPermission.findOne({
 						name: 'manage SecurityUser'
-					}).exec(function (err, doc) {
+					}, function (err, doc) {
+						console.log('SecurityUser', doc)
 						doc.role.push(role._id)
 						doc.save()
 					}),
 					SecurityPermission.findOne({
 						name: 'manage SecurityPermissionType'
-					}).exec(function (err, doc) {
+					}, function (err, doc) {
+						console.log('SecurityPermissionType', doc)
 						doc.role.push(role._id)
 						doc.save()
 					}),
 					SecurityPermission.findOne({
 						name: 'manage Basket'
-					}).exec(function (err, doc) {
+					}, function (err, doc) {
+						console.log('Basket', doc)
 						doc.role.push(role._id)
 						doc.save()
 					}),
 					SecurityPermission.findOne({
 						name: 'manage Product'
-					}).exec(function (err, doc) {
+					}, function (err, doc) {
+						console.log('Product', doc)
 						doc.role.push(role._id)
 						doc.save()
 					}),
@@ -140,19 +146,22 @@ function createCustomerPermissions() {
 			Promise.all([
 				SecurityPermission.findOne({
 					name: 'manage Basket'
-				}).exec(function (err, doc) {
+				}, function (err, doc) {
+					console.log('Basket', doc)
 					doc.role.push(role._id)
 					doc.save()
 				}),
 				SecurityPermission.findOne({
 					name: 'view Product'
-				}).exec(function (err, doc) {
+				}, function (err, doc) {
+					console.log('Product', doc)
 					doc.role.push(role._id)
 					doc.save()
 				}),
 				SecurityPermission.findOne({
 					name: 'view SecurityUser'
-				}).exec(function (err, doc) {
+				}, function (err, doc) {
+					console.log('SecurityUser', doc)
 					doc.role.push(role._id)
 					doc.save()
 				}),
@@ -233,15 +242,18 @@ module.exports = done => {
 					permName: 'manage'
 				}),
 			])
-			.then(() => Promise.all([
-					createAdminPermissions(),
-					createCustomerPermissions()
-				])
-				.then(() => Promise.all([
-						createUsers()
+			.then(() => {
+				setTimeout(Promise.all([
+						createAdminPermissions(),
+						createCustomerPermissions()
 					])
-					.then(() => {
-						console.log('all done')
-						done()
-					}))))
+					.then(() => Promise.all([
+							createUsers()
+						])
+						.then(() => {
+							console.log('all done')
+							done()
+						})), 2000)
+
+			}))
 }
