@@ -18,14 +18,16 @@ keystone.init({
 	'sass': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
-	'signin logo': ['/logo.svg', 228, 158], // relative to public directory
+	'signin logo': ['/logo.png', 200, 200], // relative to public directory
 
 	'auto update': (process.env.AUTO_UPDATE === 'true'),
 	'session': true,
 	'auth': true,
 	'user model': 'SecurityUser',
-	'role model': 'SecurityRole',                    // use whatever name for the role model
-	'permission model': 'SecurityPermission'        // use whatever name for the permission model
+	'role model': 'SecurityRole', // use whatever name for the role model
+	'permission model': 'SecurityPermission', // use whatever name for the permission model
+	'permission type model': 'SecurityPermissionType', // use whatever name for the permission type model
+	'access permission type': 'manage' // use whatever admin ui permission type name for access
 })
 
 // Load your project's Models
@@ -47,7 +49,8 @@ keystone.set('routes', requireRoot('lib/routes'))
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
-	'Users': ['security-users', 'security-roles', 'security-permissions'],
+	'Security': ['security-users', 'security-roles', 'security-permissions', 'security-permission-types'],
+	'Shop': ['baskets', 'products']
 })
 
 // Start Keystone to connect to your database and initialise the web server
