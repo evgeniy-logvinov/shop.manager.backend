@@ -182,7 +182,7 @@ function createUsers() {
 					isAdmin: false,
 					role: role._id
 				})
-				.save())),
+					.save())),
 		findRole({
 			name: 'Administrator'
 		}).then((roles) =>
@@ -194,7 +194,7 @@ function createUsers() {
 					isAdmin: true,
 					role: role._id
 				})
-				.save())),
+					.save())),
 	])
 }
 
@@ -225,35 +225,37 @@ async function findRole({
 
 module.exports = done => {
 	Promise.all([
-			createPermissionTypes(),
-			createRoles(),
-		])
+		createPermissionTypes(),
+		createRoles(),
+	])
 		.then(() => Promise.all([
-				createAdminUIPermission({
-					permName: 'view'
-				}),
-				createAdminUIPermission({
-					permName: 'manage'
-				}),
-				createShopPermission({
-					permName: 'view'
-				}),
-				createShopPermission({
-					permName: 'manage'
-				}),
-			])
+			createAdminUIPermission({
+				permName: 'view'
+			}),
+			createAdminUIPermission({
+				permName: 'manage'
+			}),
+			createShopPermission({
+				permName: 'view'
+			}),
+			createShopPermission({
+				permName: 'manage'
+			}),
+		])
 			.then(() => {
-				setTimeout(Promise.all([
+				setTimeout(() => {
+					Promise.all([
 						createAdminPermissions(),
 						createCustomerPermissions()
 					])
-					.then(() => Promise.all([
+						.then(() => Promise.all([
 							createUsers()
 						])
-						.then(() => {
-							console.log('all done')
-							done()
-						})), 2000)
+							.then(() => {
+								console.log('all done')
+								done()
+							}))
+				}, 1000)
 
 			}))
 }
