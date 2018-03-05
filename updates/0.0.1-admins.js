@@ -7,12 +7,14 @@ const SecurityUser = keystone.list('SecurityUser').model
 function createPermissionTypes() {
 	return Promise.all([
 		new SecurityPermissionType({
-			name: 'manage'
-		}).save().then((spt) =>
-			new SecurityPermissionType({
-				name: 'view',
-				permType: [spt._id]
-			}).save(), ),
+			name: 'view',
+		})
+			.save()
+			.then((spt) =>
+				new SecurityPermissionType({
+					name: 'manage',
+					permType: [spt._id]
+				}).save()),
 	])
 }
 
