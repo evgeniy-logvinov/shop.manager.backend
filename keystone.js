@@ -27,7 +27,8 @@ keystone.init({
 	'role model': 'SecurityRole', // use whatever name for the role model
 	'permission model': 'SecurityPermission', // use whatever name for the permission model
 	'permission type model': 'SecurityPermissionType', // use whatever name for the permission type model
-	'access permission type': 'manage' // use whatever admin ui permission type name for access
+	'access permission type': 'manage', // use whatever admin ui permission type name for access
+	'rest api prefix': 'kjs:/' //keystone js prefix for tokens
 })
 
 // Load your project's Models

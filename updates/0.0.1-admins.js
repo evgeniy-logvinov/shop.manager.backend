@@ -97,42 +97,36 @@ function createAdminPermissions() {
 					SecurityPermission.findOne({
 						name: 'manage SecurityPermission'
 					}, function (err, doc) {
-						console.log('SecurityPermission', doc)
 						doc.role.push(role._id)
 						doc.save()
 					}),
 					SecurityPermission.findOne({
 						name: 'manage SecurityRole'
 					}, function (err, doc) {
-						console.log('SecurityRole', doc)
 						doc.role.push(role._id)
 						doc.save()
 					}),
 					SecurityPermission.findOne({
 						name: 'manage SecurityUser'
 					}, function (err, doc) {
-						console.log('SecurityUser', doc)
 						doc.role.push(role._id)
 						doc.save()
 					}),
 					SecurityPermission.findOne({
 						name: 'manage SecurityPermissionType'
 					}, function (err, doc) {
-						console.log('SecurityPermissionType', doc)
 						doc.role.push(role._id)
 						doc.save()
 					}),
 					SecurityPermission.findOne({
 						name: 'manage Basket'
 					}, function (err, doc) {
-						console.log('Basket', doc)
 						doc.role.push(role._id)
 						doc.save()
 					}),
 					SecurityPermission.findOne({
 						name: 'manage Product'
 					}, function (err, doc) {
-						console.log('Product', doc)
 						doc.role.push(role._id)
 						doc.save()
 					}),
@@ -150,21 +144,18 @@ function createCustomerPermissions() {
 				SecurityPermission.findOne({
 					name: 'manage Basket'
 				}, function (err, doc) {
-					console.log('Basket', doc)
 					doc.role.push(role._id)
 					doc.save()
 				}),
 				SecurityPermission.findOne({
 					name: 'view Product'
 				}, function (err, doc) {
-					console.log('Product', doc)
 					doc.role.push(role._id)
 					doc.save()
 				}),
 				SecurityPermission.findOne({
 					name: 'view SecurityUser'
 				}, function (err, doc) {
-					console.log('SecurityUser', doc)
 					doc.role.push(role._id)
 					doc.save()
 				}),
@@ -185,7 +176,7 @@ function createUsers() {
 					isAdmin: false,
 					role: role._id
 				})
-				.save())),
+					.save())),
 		findRole({
 			name: 'Administrator'
 		}).then((roles) =>
@@ -197,7 +188,7 @@ function createUsers() {
 					isAdmin: true,
 					role: role._id
 				})
-				.save())),
+					.save())),
 	])
 }
 
@@ -228,32 +219,32 @@ async function findRole({
 
 module.exports = done => {
 	Promise.all([
-			createPermissionTypes(),
-			createRoles(),
-		])
+		createPermissionTypes(),
+		createRoles(),
+	])
 		.then(() => Promise.all([
-				createAdminUIPermission({
-					permName: 'view'
-				}),
-				createAdminUIPermission({
-					permName: 'manage'
-				}),
-				createShopPermission({
-					permName: 'view'
-				}),
-				createShopPermission({
-					permName: 'manage'
-				}),
-			])
+			createAdminUIPermission({
+				permName: 'view'
+			}),
+			createAdminUIPermission({
+				permName: 'manage'
+			}),
+			createShopPermission({
+				permName: 'view'
+			}),
+			createShopPermission({
+				permName: 'manage'
+			}),
+		])
 			.then(() => {
 				setTimeout(() => {
 					Promise.all([
-							createAdminPermissions(),
-							createCustomerPermissions()
-						])
+						createAdminPermissions(),
+						createCustomerPermissions()
+					])
 						.then(() => Promise.all([
-								createUsers()
-							])
+							createUsers()
+						])
 							.then(() => {
 								console.log('all done')
 								done()
