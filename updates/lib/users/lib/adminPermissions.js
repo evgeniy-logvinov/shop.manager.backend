@@ -13,6 +13,7 @@ function createAdminPermissions() {
                     pushRole({ permName: 'manage SecurityPermissionType', roleId: role._id }),
                     pushRole({ permName: 'manage Basket', roleId: role._id }),
                     pushRole({ permName: 'manage Product', roleId: role._id }),                    
+                    pushRole({ permName: 'manage ProductInBasket', roleId: role._id }),                    
                 ]))
         ),
     ])

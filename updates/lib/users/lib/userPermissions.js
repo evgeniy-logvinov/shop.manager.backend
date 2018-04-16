@@ -8,6 +8,7 @@ function createUserPermissions() {
             Promise.all([
 				pushRole({ permName: 'manage Basket', roleId: role._id }),
 				pushRole({ permName: 'view Product', roleId: role._id }),
+				pushRole({ permName: 'view ProductInBasket', roleId: role._id }),
 				pushRole({ permName: 'view SecurityUser', roleId: role._id }),
             ]))
     )])

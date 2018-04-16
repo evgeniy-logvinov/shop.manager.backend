@@ -11,6 +11,7 @@ function createShopPermission({
 				Promise.all([
 					addPermission({ permName, listName: 'Basket', permTypeId: permType._id }),
 					addPermission({ permName, listName: 'Product', permTypeId: permType._id }),
+					addPermission({ permName, listName: 'ProductInBasket', permTypeId: permType._id }),
 				]))
 		})
 	])
