@@ -36,6 +36,7 @@
     "dev": "node keystone.js",
     "start": "node keystone.js",
     "lint": "eslint --ext .js index middleware models partials routes updates utils",
+    "lint:fix": "npm run lint -- --fix",
     "lint:test": "./node_modules/eslint/bin/eslint.js --ext .js models routes templates updates"
   }
 }
